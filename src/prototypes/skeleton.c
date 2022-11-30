@@ -8,16 +8,32 @@ void skeleton_update(Entity* _self, World* _world, Room* _room) {
     switch (direction)
     {
         case 'u': //Up
-            _self->position.y += 1;
+            if (world_position.y - 1 >= 0) {
+                _self->position.y -= 1;
+            } else if (world_position.x + 1 <= _ROOM_WORLD_LENGTH_){
+                _self->position.x += 1;
+            }
             break;
         case 'r': //Right
-            _self->position.x += 1;
+            if (world_position.x - 1 >= 0) {
+                _self->position.x -= 1;
+            } else if (world_position.y - 1 >= 0) {
+                _self->position.y -= 1;
+            }
             break;
         case 'd': //Down
-            _self->position.y -= 1;
+            if (world_position.y + 1 <= _ROOM_WORLD_WIDTH_) {
+                _self->position.y += 1;
+            } else if (world_position.x - 1 >= 0){
+                _self->position.x -= 1;
+            }
             break;
         case 'l': //Left
-            _self->position.x -= 1;
+            if (world_position.x + 1 <= _ROOM_WORLD_LENGTH_) {
+                _self->position.x += 1;
+            } else if (world_position.y + 1 <= _ROOM_WORLD_WIDTH_) {
+                _self->position.y += 1;   
+            }
             break;
         default:
             break;
