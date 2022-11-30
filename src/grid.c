@@ -99,6 +99,7 @@ void clearGrid(SquareGrid* _grid) {
         for (j = 0; j < _ROOM_WIDTH_; ++j) {
             _grid->came_from[i][j] = newIVec2(-1, -1);
             _grid->vertices[i][j] = ' ';
+            _grid->distance_to_player[i][j] = 0;
         }
     }
 }
