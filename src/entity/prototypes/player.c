@@ -1,5 +1,8 @@
 #include "../../../include/entity/prototypes/player.h"
 
+const static i32 GRID_LENGTH = 12;
+const static i32 GRID_HEIGHT = 7;
+
 void initPlayerUI(PlayerUI* _playerUI, Sprite* _sprites, i32* _next_sprite_index) {
     int i = 0;
     for(i = 0; i < HEALTH_CAP; ++i) {
@@ -147,7 +150,9 @@ void killPlayer(Entity* _self) {
     return;
 }
 
-void player_update(Entity* _self, World* _world, Room* _room) {
+void playerUpdate(Entity* _self, World* _world, Room* _room) {
+    ivec2 world_position = screenToGridPosition(_self->position);
+
     _self->vel.x = _self->vel.x / 2;
     _self->vel.y = _self->vel.y / 2;
 
@@ -168,6 +173,16 @@ void player_update(Entity* _self, World* _world, Room* _room) {
             break;
         default:
             break;
+    }
+
+    if (world_position.x < 0) {
+        _self->vel.x = 1;
+    } else if (world_position.x > GRID_LENGTH) {
+        _self->vel.x = -1;
+    } else if (world_position.y < 0) {
+        _self->vel.y = 1;
+    } else if (world_position.y > GRID_HEIGHT) {
+        _self->vel.y = -1;
     }
 
     if (buttonPressed(_BUTTON_RIGHT_)) {

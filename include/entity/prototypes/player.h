@@ -106,6 +106,6 @@ void killPlayer(Entity* _self);
  * @param _world        existing world
  * @param _room         existing room
 */
-void player_update(Entity* _self, World* _world, Room* _room);
+void playerUpdate(Entity* _self, World* _world, Room* _room);
 
 #endif

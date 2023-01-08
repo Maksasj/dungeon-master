@@ -319,7 +319,7 @@ int gameScene(Class *chosenClass) {
     entityInitSprite(&player, sprites, &next_sprite_index);
     spriteSetOffset(player.sprite, player.sprite_offset);
 
-    player.update_callback = &player_update;
+    player.update_callback = &playerUpdate;
     player.die_callback = &killPlayer;
     player.dodge_callback = &playerTryDodge;
 
